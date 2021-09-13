@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- FontAwesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="./src/css/style.css" />
+
+		<title>Vue To Do List</title>
+	</head>
+
+	<body>
+		<div id="app" class="container">
+			<div class="logo">
+				<img src="https://www.boolean.careers/images/misc/logo.png" alt="Logo Boolean" />
+			</div>
+			<div class="search">
+				<input @keyUp.enter="addToDo" type="text" v-model="newToDo" placeholder="Nuovo Todo" />
+				<button @click="addToDo">Aggiungi</button>
+			</div>
+			<div class="list">
+				<ul v-if="toDos.length > 0">
+					<li @click="changeDoneStatus(index)" v-for="(toDo, index) in toDos" :class="(toDo.done === true) ? 'done' : 'notDone'">
+						<span>{{toDo.title}}</span>
+						<span>
+							<i @click="removeToDo(index)" class="fas fa-times"></i>
+						</span>
+					</li>
+				</ul>
+				<div v-else class="else"><span>Non ci sono cose da fare</span></div>
+			</div>
+		</div>
+		<!-- VueJS -->
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+		<!-- Main JS -->
+		<script src="./src/js/main.js"></script>
+	</body>
+</html>
